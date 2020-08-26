@@ -9,6 +9,8 @@ Private registry server deployed as a dokku app with HTTP Basic auth using
 dokku apps:create my-registry
 dokku config:set my-registry REGISTRY_HTTP_SECRET=$(openssl rand -hex 64)
 dokku config:set my-registry AUTH_USER=user AUTH_PASSWORD=$(openssl rand -hex 16)
+dokku config:set my-registry AUTH_USER=user AUTH_PASSWORD=$(openssl rand -hex 16)
+dokku config:set my-registry NGINX_MAX_REQUEST_BODY=1024M
 dokku storage:mount my-registry /var/lib/dokku/data/storage/my-registry:/var/lib/registry
 dokku ps:set-restart-policy my-registry unless-stopped
 dokku domains:add my-registry my-registry.example.com
